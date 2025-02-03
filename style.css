@@ -69,22 +69,45 @@ button:hover {
     align-items: center;
     color: var(--accent-color);
     background-color: var(--background-color);
-    width: 60vw;
+    width: 80vw;
     height: 45vh;
     border: 1px solid var(--border-color);
     border-radius: 14px;
+}
+
+.timer-elements {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 12vh;
+    width: 100vw;
+    gap: 2vw;
+}
+
+.timer-button {
+    width: 10vh;
+    height: 10vh;
+    border-radius: 100%;
+}
+
+#play-button {
+    background-color: var(--secondary-color);
+}
+
+#restart-button {
+    background-color: var(--primary-color);
 }
 
 .timer-container {
     display: flex;
     justify-content: center;
     background-color: var(--background-color);
-    width: 60vw;
+    width: 50vw;
     height: 12vh;
-    margin-left: 20vw;
     border-radius: 14px;
-    border: 1px solid var(--border-color);
 }
+
+
 
 .timer {
     font-family: 'DS-Digital',sans-serif;
