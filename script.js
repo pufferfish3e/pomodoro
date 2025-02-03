@@ -1,3 +1,4 @@
+let time;
 let isTimerRunning = false;
 const playButton = document.getElementById("button-play");
 const pauseButton = document.getElementById("button-pause");
@@ -6,7 +7,8 @@ const restartButton = document.getElementById("restart-button");
 const addInputButton = document.getElementById("addInputButton");
 
 toggleButton.addEventListener("click",toggleIcons);
-addInputButton.addEventListener("click", userInput)
+addInputButton.addEventListener("click", userInput);
+playButton.addEventListener("click",startTimer);
 
 function toggleIcons() {
   if (playButton.style.display != "none") {
@@ -35,28 +37,63 @@ function userInput() {
     if (event.key === "Enter") {
       let inputValue = inputField.value;
       let inputCheck = inputValue.split("");
-      if (parseInt((inputCheck[0]).toString()+(inputCheck[1]).toString()) >= 24) {alert("Invalid time. Please try again.");} 
-      else if (parseInt((inputCheck[3]).toString()+(inputCheck[4]).toString()) > 60) {"Invalid time. Please try again.";} 
-      else if (parseInt((inputCheck[6]).toString()+(inputCheck[7]).toString()) > 60) {"Invalid time. Please try again.";}
+      if (parseInt((inputCheck[0]).toString()+(inputCheck[1]).toString()) >= 24) {
+        alert("Invalid time. Please try again.");
+      } 
+      else if (parseInt((inputCheck[3]).toString()+(inputCheck[4]).toString()) > 60) {
+        alert("Invalid time. Please try again.");
+      } 
+      else if (parseInt((inputCheck[6]).toString()+(inputCheck[7]).toString()) > 60) {
+        alert("Invalid time. Please try again.");
+      }
+      time = inputField.value;
     }
   })
 }
 
-
-
-/*
-function updateDisplay() {
+function updateDisplay(timeLeft) {
   timerDisplay.textContent = timeLeft;
 }
 
-
 function startTimer() {
-  
+  isTimerRunning = true;
+  time = time.split(":");
+  let hours = parseInt(time[0], 10);
+  let minutes = parseInt(time[1], 10);
+  let seconds = parseInt(time[2], 10);
+
+  const timerElement = document.getElementById('addInputButton');
+
+  function updateDisplay() {
+    timerElement.textContent = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+  }
+
+  function decrementTime() {
+    if (seconds > 0) {
+      seconds--;
+    } else if (minutes > 0) {
+      seconds = 59;
+      minutes--;
+    } else if (hours > 0) {
+      seconds = 59;
+      minutes = 59;
+      hours--;
+    } else {
+      isTimerRunning = false;
+      alert("Timer is done!");
+      return;
+    }
+    updateDisplay();
+    if (isTimerRunning) {
+      setTimeout(decrementTime, 1000);
+    }
+  }
+
+  updateDisplay();
+  decrementTime();
 }
 
 function restart() {
-  pauseTimer();
-  timeinseconds = 0;
+  isTimerRunning = false;
   updateDisplay();
 }
-*/
