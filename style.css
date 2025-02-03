@@ -57,11 +57,13 @@ button:hover {
 }
 
 .main-container {
+    margin-top: 5vh;
     display: flex;
     width: 100vw;
     height: 60vh;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
 }
 
 .img-container {
@@ -70,11 +72,18 @@ button:hover {
     color: var(--accent-color);
     background-color: var(--background-color);
     width: 80vw;
-    height: 45vh;
+    height: 50vh;
     border: 1px solid var(--border-color);
     border-radius: 14px;
     max-width: 50%;
 }
+
+#text {
+    margin-top: 5vh;
+    font-family: 'DS-Digital',sans-serif;
+    font-size: 3rem;
+}
+
 
 .timer-elements {
     display: flex;
@@ -96,6 +105,8 @@ button:hover {
     align-items: center;
 }
 
+
+
 .timer-button:hover {
     transform: scale(1.1);
     transition: transform 0.3s ease-in;
@@ -108,10 +119,9 @@ button:hover {
     width: 100%;
     height: 60%;
     color: var(--background-color);
-    font-size: 45px;
+    font-size: 50px;
     transition: opacity 0.3s ease-in-out;
 }
-
 
 #play-button {
     background-color: var(--secondary-color);
@@ -129,18 +139,47 @@ button:hover {
 .timer-container {
     display: flex;
     justify-content: center;
-    background-color: var(--background-color);
+    background-color: var(--background);
     width: 50vw;
     height: 12vh;
     border-radius: 14px;
     max-width: 30%;
 }
 
-.timer {
+.selected-time {
+    background: var(--background);
+    border: none;
     font-family: 'DS-Digital',sans-serif;
     display: flex;
     align-items: center;
     font-size: 50px;
+}
+
+input {
+    display: flex;
+    justify-content: center;
+    background-color: var(--background);
+    text-align: center;
+    width: 20vw;
+    height: 6vh;
+    border-radius: 14px;
+    border: none;
+    font-family: 'DS-Digital',sans-serif;
+    font-size: 50px;
+    color: var(--primary-text-color);
+    caret-color: var(--primary-text-color);
+}
+
+:focus {
+  outline: none;
+}
+
+.selected-time:hover {
+    background: var(--background);
+    border-radius: 14px;
+    transform: scale(1.05);
+    transition: transform 0.5s ease-in;
+    
 }
 
 @media (max-width: 800px) {
@@ -169,7 +208,7 @@ button:hover {
 .timer-container {
     display: flex;
     justify-content: center;
-    background-color: var(--background-color);
+    background: var(--background);
     width: 50vw;
     height: 12vh;
     border-radius: 14px;
@@ -179,6 +218,10 @@ button:hover {
 .timer-button i {
     margin: 0;
     font-size: 40px;
-    
 }
+
+input {
+    width: 35vw;
+}
+
 }
