@@ -1,5 +1,6 @@
 let time;
-let isTimerRunning = false;
+let isPlaying;
+let isTimerRunning = true;
 const playButton = document.getElementById("button-play");
 const pauseButton = document.getElementById("button-pause");
 const toggleButton = document.getElementById("play-button");
@@ -14,9 +15,11 @@ function toggleIcons() {
   if (playButton.style.display != "none") {
     playButton.style.display = "none";
     pauseButton.style.display = "inline";
+    isPlaying = true;
   } else {
     playButton.style.display = "inline";
     pauseButton.style.display = "none";
+    isPlaying = false;
   }
 }
 
@@ -47,6 +50,7 @@ function userInput() {
         alert("Invalid time. Please try again.");
       }
       time = inputField.value;
+      time = time.split(":");
     }
   })
 }
@@ -57,7 +61,7 @@ function updateDisplay(timeLeft) {
 
 function startTimer() {
   isTimerRunning = true;
-  time = time.split(":");
+  isPlaying = true;
   let hours = parseInt(time[0], 10);
   let minutes = parseInt(time[1], 10);
   let seconds = parseInt(time[2], 10);
@@ -81,14 +85,15 @@ function startTimer() {
     } else {
       isTimerRunning = false;
       alert("Timer is done!");
+      playButton.style.display = "inline";
+      pauseButton.style.display = "none";
       return;
     }
     updateDisplay();
-    if (isTimerRunning) {
+    if (isTimerRunning && isPlaying) {
       setTimeout(decrementTime, 1000);
     }
   }
-
   updateDisplay();
   decrementTime();
 }
