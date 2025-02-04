@@ -106,9 +106,9 @@ function decrementTime() {
     hours--;
   } else {
     isTimerRunning = false;
-    alert("Timer is done!");
     playButton.style.display = "inline";
     pauseButton.style.display = "none";
+    alert("Timer is done!");
     return;
   }
     updateDisplay();

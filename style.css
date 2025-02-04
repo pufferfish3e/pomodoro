@@ -1,32 +1,68 @@
 :root {
-    /* Light Theme Variables */
-    --background-color: #ffffff;
-    --primary-color: #3498db;
-    --secondary-color: #2ecc71; 
-    --accent-color: #007aff; 
-    --primary-text-color: #000000; 
-    --border-color: #c6c6c8; 
+    --background: #022B3A;       
+    --background-color: #1B4965; 
+    --primary-color: #5FA8D3;    
+    --secondary-color: #62C2A5;  
+    --accent-color: #FFD166;     
+    --primary-text-color: #F4F4F4; 
+    --border-color: #0F4C75;
 }
-
 @media (prefers-color-scheme: dark) {
     :root {
-    --background: #000000;
-    --background-color: #1c1c1e; 
-    --primary-color: #0a84ff; 
-    --secondary-color: #30d158; 
-    --accent-color: #0a84ff; 
-    --primary-text-color: #ffffff;
-    --border-color: #3a3a3c; 
-    }
+    --background: #010A13;       
+    --background-color: #061A2B; 
+    --primary-color: #0E4DA4;    
+    --secondary-color: #1B998B;  
+    --accent-color: #0DA9E6;     
+    --primary-text-color: #E1E8F0;
+    --border-color: #0A2A43;     
+}
+}
+
+html {
+  filter: none;
 }
 
 body {
-    background-color: var(--background);
+    height: 100vh;
+    position: relative;
+    background: linear-gradient(45deg, #03045e, #0077b6, #00b4d8, #90e0ef);
+    overflow: hidden;
+    background-size: 400% 400%;
+    -webkit-animation: oceanFlow 20s ease infinite;
+    -moz-animation: oceanFlow 20s ease infinite;
+    animation: oceanFlow 20s ease infinite;
+    background-position: center;
     color: var(--primary-text-color);
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
+    -webkit-backdrop-filter: blur(3px);
+    backdrop-filter: blur(3px);
+    z-index: 1;
 }
+
+@-webkit-keyframes oceanFlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+@-moz-keyframes oceanFlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+@keyframes oceanFlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.content {
+  position: relative;
+  z-index: 2;
+}
+
 
 a {
     color: var(--primary-color);
@@ -64,16 +100,16 @@ button:hover {
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    border: none;
+    
 }
 
 .img-container {
     display: flex;
     align-items: center;
     color: var(--accent-color);
-    background-color: var(--background-color);
     width: 80vw;
     height: 50vh;
-    border: 1px solid var(--border-color);
     border-radius: 14px;
     max-width: 50%;
 }
@@ -95,6 +131,7 @@ button:hover {
 }
 
 .timer-button {
+    border: none;
     position: relative;
     display: flex;
     width: 10vh;
@@ -137,9 +174,9 @@ button:hover {
 }
 
 .timer-container {
+    background: transparent;
     display: flex;
     justify-content: center;
-    background-color: var(--background);
     width: 50vw;
     height: 12vh;
     border-radius: 14px;
@@ -147,7 +184,7 @@ button:hover {
 }
 
 .selected-time {
-    background: var(--background);
+    background: transparent;
     border: none;
     font-family: 'DS-Digital',sans-serif;
     display: flex;
@@ -156,9 +193,9 @@ button:hover {
 }
 
 input {
+    background: transparent;
     display: flex;
     justify-content: center;
-    background-color: var(--background);
     text-align: center;
     width: 20vw;
     height: 6vh;
@@ -175,7 +212,7 @@ input {
 }
 
 .selected-time:hover {
-    background: var(--background);
+    background: transparent;
     border-radius: 14px;
     transform: scale(1.05);
     transition: transform 0.5s ease-in;
@@ -198,17 +235,15 @@ input {
     display: flex;
     align-items: center;
     color: var(--accent-color);
-    background-color: var(--background-color);
     height: 45vh;
-    border: 1px solid var(--border-color);
     border-radius: 14px;
     min-width: 80%;
 }
 
 .timer-container {
+    backdrop-filter: blur(1px);
     display: flex;
     justify-content: center;
-    background: var(--background);
     width: 50vw;
     height: 12vh;
     border-radius: 14px;
