@@ -40,7 +40,7 @@ body {
     height: 100vh;
     position: relative;
     background: var(--background);
-    overflow: hidden;
+    overflow-x: hidden;
     background-size: 400% 400%;
     -webkit-animation: oceanFlow 15s ease infinite;
     -moz-animation: oceanFlow 15s ease infinite;
