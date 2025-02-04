@@ -1,35 +1,44 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="theme-1">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.cdnfonts.com/css/ds-digital" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 </head>
 <body>
     <div class="content">
-    <div class="title-text-container">
-        <h1>Timers</h1>
-    </div>
+    <nav id="navbar">
+      <ul>
+        <li id="pomodoro"><b>Pomodoro</b></li>
+        <li id="shortbreak"><b>Short Break</b></li>
+        <li id="longbreak"><b>Long Break</b></li>
+      </ul>
+    </nav>
     <div class="main-container">
-    <div class="img-container"></div>
-    <span id="text">H : M : S</span>
+    <div class="img-container">
+      <img src="assets/pufferfish.png" id="pufferfish"></img>
+    </div>
     </div>
     <div class="timer-elements">
         <button class="timer-button" id="play-button">
           <i id="button-play" class="fa-solid fa-play"></i>
           <i id="button-pause" class="fa-solid fa-pause"></i>
           </button>
-    <div class="frosted-glass timer-container">
-        <button class="frosted-glass selected-time" id="addInputButton">00:00:00</button>
+    <div class="timer-container">
+        <button class="selected-time" id="addInputButton">00:00:00</button>
     </div>
         <button class="timer-button" id="restartButton"><i class="fa-solid fa-arrow-rotate-left"></i></button>
     </div>
     </div>
-    <nav>
-    </nav>
+    <div class="theme-selector">
+      <button class="selecttheme" id="themebtn">Click Me!</button>
+    </div>
     <script src="script.js"></script>
 </body>
 </html>

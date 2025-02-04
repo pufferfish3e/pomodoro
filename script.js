@@ -11,6 +11,7 @@ const pauseButton = document.getElementById("button-pause");
 const toggleButton = document.getElementById("play-button");
 const restartButton = document.getElementById("restartButton");
 const addInputButton = document.getElementById("addInputButton");
+const ringTone = new Audio("assets/alarm.mp3");
 
 toggleButton.addEventListener("click",toggleIcons);
 addInputButton.addEventListener("click", userInput);
@@ -106,9 +107,15 @@ function decrementTime() {
     hours--;
   } else {
     isTimerRunning = false;
+    ringTone.play();
     playButton.style.display = "inline";
     pauseButton.style.display = "none";
-    alert("Timer is done!");
+    let userResponse = confirm("Timer Done!"); 
+    if (userResponse) {
+      ringTone.pause();
+    } else {
+      ringTone.pause();
+    }
     return;
   }
     updateDisplay();
@@ -133,3 +140,82 @@ function restart() {
   addInputButton.innerHTML = "00:00:00";
   updateDisplay();
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+  const pufferfishIcon = document.getElementById("pufferfish");
+  const navBar = document.getElementById("navbar");
+  const navBarElement = document.getElementsByTagName("ul");
+  
+  pufferfishIcon.addEventListener("click", () => {
+    document.querySelectorAll("li").forEach((navBarElement) => {
+  navBarElement.style.display = "flex";
+  })
+    pufferfishIcon.classList.remove("pufferfish-move");
+    pufferfishIcon.classList.add("pufferfish-move");
+    navBar.classList.remove("navbar-spit-out");
+    navBar.classList.add("navbar-spit-out");
+    document.querySelectorAll("li").forEach((navBarElement) => {
+      navBarElement.style.animation = "2s split ease-out forwards";
+    })
+  });
+});
+
+const pomodoroTimer = document.getElementById("pomodoro");
+const shortBreak = document.getElementById("shortbreak");
+const longBreak = document.getElementById("longbreak");
+
+pomodoroTimer.addEventListener("click",setPomodoroTimer);
+shortBreak.addEventListener("click",setShortBreak);
+longBreak.addEventListener("click",setLongBreak);
+
+
+function setPomodoroTimer() {
+  if (pauseButton.style.display != "none") {
+  playButton.style.display = "inline";
+  pauseButton.style.display = "none";
+  }
+  isTimerRunning = false;
+  isPlaying = false;
+  hours = 0;
+  minutes = 25;
+  seconds = 0;
+  addInputButton.innerHTML = "00:25:00";
+  updateDisplay();
+}
+
+function setShortBreak() {
+  if (pauseButton.style.display != "none") {
+  playButton.style.display = "inline";
+  pauseButton.style.display = "none";
+  }
+  isTimerRunning = false;
+  isPlaying = false;
+  hours = 0;
+  minutes = 5;
+  seconds = 0;
+  addInputButton.innerHTML = "00:05:00";
+  updateDisplay();
+}
+function setLongBreak() {
+  if (pauseButton.style.display != "none") {
+  playButton.style.display = "inline";
+  pauseButton.style.display = "none";
+  }
+  isTimerRunning = false;
+  isPlaying = false;
+  hours = 0;
+  minutes = 15;
+  seconds = 0;
+  addInputButton.innerHTML = "00:15:00";
+  updateDisplay();
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  const themeChanger = document.getElementById("themebtn");
+  const toggleTheme = document.documentElement;
+
+  themeChanger.addEventListener("click", () => {
+    toggleTheme.classList.toggle("theme-1");
+    toggleTheme.classList.toggle("theme-2");
+  });
+});
