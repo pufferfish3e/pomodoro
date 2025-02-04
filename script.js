@@ -1,15 +1,21 @@
+// timer section
+
 let time;
 let isPlaying;
 let isTimerRunning = true;
+let hours;
+let minutes;
+let seconds;
 const playButton = document.getElementById("button-play");
 const pauseButton = document.getElementById("button-pause");
 const toggleButton = document.getElementById("play-button");
-const restartButton = document.getElementById("restart-button");
+const restartButton = document.getElementById("restartButton");
 const addInputButton = document.getElementById("addInputButton");
 
 toggleButton.addEventListener("click",toggleIcons);
 addInputButton.addEventListener("click", userInput);
 playButton.addEventListener("click",startTimer);
+restartButton.addEventListener("click",restart);
 
 function toggleIcons() {
   if (playButton.style.display != "none") {
@@ -37,60 +43,76 @@ function userInput() {
     if (charlength === 2 || charlength === 5) {
       inputField.value += ":";
     }
-    if (event.key === "Enter") {
+    if (charlength === 8) {
       let inputValue = inputField.value;
-      let inputCheck = inputValue.split("");
-      if (parseInt((inputCheck[0]).toString()+(inputCheck[1]).toString()) >= 24) {
+      let inputCheck = inputValue.split(":");
+      if ((!isNaN(inputCheck[0])) && (!isNaN(inputCheck[1])) && (!isNaN(inputCheck[2]))) {
+      if (parseInt((inputCheck[0]).toString()) >= 24) {
         alert("Invalid time. Please try again.");
+        return;
       } 
-      else if (parseInt((inputCheck[3]).toString()+(inputCheck[4]).toString()) > 60) {
+      else if (parseInt((inputCheck[1]).toString()) > 60) {
         alert("Invalid time. Please try again.");
+        return;
       } 
-      else if (parseInt((inputCheck[6]).toString()+(inputCheck[7]).toString()) > 60) {
+      else if (parseInt((inputCheck[2])) > 60) {
         alert("Invalid time. Please try again.");
+        return;
       }
       time = inputField.value;
       time = time.split(":");
+      inputField.blur();
+      initialize();
+      } else {
+        alert("Not a number!");
+        inputField.blur();
+      }
     }
   })
 }
+
 
 function updateDisplay(timeLeft) {
   timerDisplay.textContent = timeLeft;
 }
 
+function initialize() {
+  hours = parseInt(time[0], 10);
+  minutes = parseInt(time[1], 10);
+  seconds = parseInt(time[2], 10);
+}
+
 function startTimer() {
   isTimerRunning = true;
   isPlaying = true;
-  let hours = parseInt(time[0], 10);
-  let minutes = parseInt(time[1], 10);
-  let seconds = parseInt(time[2], 10);
-
   const timerElement = document.getElementById('addInputButton');
 
-  function updateDisplay() {
-    timerElement.textContent = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-  }
+function updateDisplay() {
+  timerElement.textContent = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+}
 
-  function decrementTime() {
-    if (seconds > 0) {
-      seconds--;
-    } else if (minutes > 0) {
-      seconds = 59;
-      minutes--;
-    } else if (hours > 0) {
-      seconds = 59;
-      minutes = 59;
-      hours--;
-    } else {
-      isTimerRunning = false;
-      alert("Timer is done!");
-      playButton.style.display = "inline";
-      pauseButton.style.display = "none";
-      return;
-    }
+function decrementTime() {
+  if (!isPlaying) {
+    return;
+  }
+  if (seconds > 0) {
+    seconds--;
+  } else if (minutes > 0) {
+    seconds = 59;
+    minutes--;
+  } else if (hours > 0) {
+    seconds = 59;
+    minutes = 59;
+    hours--;
+  } else {
+    isTimerRunning = false;
+    alert("Timer is done!");
+    playButton.style.display = "inline";
+    pauseButton.style.display = "none";
+    return;
+  }
     updateDisplay();
-    if (isTimerRunning && isPlaying) {
+    if (isTimerRunning) {
       setTimeout(decrementTime, 1000);
     }
   }
@@ -99,6 +121,15 @@ function startTimer() {
 }
 
 function restart() {
+  if (pauseButton.style.display != "none") {
+    playButton.style.display = "inline";
+    pauseButton.style.display = "none";
+  }
   isTimerRunning = false;
+  isPlaying = false;
+  hours = 0;
+  minutes = 0;
+  seconds = 0;
+  addInputButton.innerHTML = "00:00:00";
   updateDisplay();
 }
